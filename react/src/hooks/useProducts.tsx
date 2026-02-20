@@ -8,7 +8,7 @@ export default function useProducts() {
 
  const getData = async () => {
     try {
-        const data = await getProducts();
+        const {data} = await getProducts();
         console.log("success",data);
             // plist.pusha(...data);
             // console.log("plist",plist);
