@@ -1,3 +1,4 @@
+import { useCurrency } from "../context/CurrencyContext";
 import type { ProductType } from "../types";
 import Cards from "./Cards";
 type Props ={
@@ -16,6 +17,7 @@ type Props ={
 
 // }
 function Product({pdata:data,btnClick}:Props){
+    const { currency}= useCurrency();
     //const data = props.pdata we did aliasing
 
     // return early if no data to avoid "possibly undefined" errors
@@ -33,7 +35,8 @@ function Product({pdata:data,btnClick}:Props){
        <Cards>
             <img src={data.productImage} alt={data.productName} />
             <h2>{data.productName}</h2>
-            <p>{data.productPrice}</p>
+            <p>{data.productPrice} {currency}</p>
+            
             {renderStock()} //this or this 
             
             //we just render
