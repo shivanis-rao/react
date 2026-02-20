@@ -4,27 +4,11 @@ import { getProducts } from "../services/ProductServices";
 import type { ProductType } from "../types";
 import Product from "../components/Product";
 import { useEffect, useState } from "react";
+import useProducts from "../hooks/useProducts";
  
 
 function ProductList() {
-   const [plist,setPlist] = useState<ProductType[]>([]);
-
-
- const getData = async () => {
-    try {
-        const data = await getProducts();
-        console.log("success",data);
-            // plist.pusha(...data);
-            // console.log("plist",plist);
-            setPlist(data); 
-    }catch(e){
-        console.log("error",e);
-    }
- };
-
- useEffect(()=>{
-  getData();
- },[]);
+  const plist = useProducts();
 
 
   return (
