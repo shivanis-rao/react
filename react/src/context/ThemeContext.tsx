@@ -16,11 +16,18 @@ export function useTheme(){
     const color = theme === "light" ? "#333" : "#fff";
     const toggleTheme =()=>{
         const newTheme=(theme === "light" ? "dark" : "light");
+        localStorage.setItem("theme",newTheme);
         setTheme(newTheme);
         
     };
     useEffect(()=>{
-        document.body.style.backgroundColor = theme === "light" ? "#fff" : "#333";
-    },[theme]);
-    return {theme,color,toggleTheme};
+        if(localStorage.getItem("theme")){
+            setTheme(localStorage.getItem("theme")as string);
+        }
+    },[]);
+    const bgColor = theme === "light" ? "#fff" : "#333";
+    useEffect(()=>{
+        document.body.style.backgroundColor = bgColor;
+    },[bgColor]);
+    return {theme,bgColor,color,toggleTheme};
 }
