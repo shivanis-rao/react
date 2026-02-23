@@ -5,11 +5,17 @@ import type { ProductType } from "../types";
 import Product from "../components/Product";
 import { use, useEffect, useState } from "react";
 import useProducts from "../hooks/useProducts";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
  
 
 function ProductList() {
   const [search,setSearch] =useState("");
+  const [queryParams,setQueryParams] = useSearchParams();
+  useEffect(()=>{
+    if(queryParams.has("q")){
+      setSearch(queryParams.get("q") ||"");
+    }
+  },[queryParams]);
   const plist = useProducts();
 
   const navigate = useNavigate();
@@ -18,8 +24,15 @@ function ProductList() {
   return (
 
     <div className="grid grid-cols-4 gap-4">
-      <input type="search" value={search} onChange={(e)=>setSearch(e.target.value)}  />
-      {plist.map((item) => (
+      <input type="search" value={search} 
+      onChange={(e)=>{
+        // setSearch(e.target.value);
+        setQueryParams({q:e.target.value});
+
+      }}  />
+      {plist.filter(i=>
+      i.productName.toLowerCase().startsWith(search.trim().toLowerCase()),
+    ).map((item) => (
         <Product
           key={item.productId}
           pdata={item}
