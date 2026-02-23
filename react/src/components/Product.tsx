@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { useCurrency } from "../context/CurrencyContext";
 import type { ProductType } from "../types";
 import Cards from "./Cards";
@@ -33,7 +34,10 @@ function Product({pdata:data,btnClick}:Props){
      
     return(
        <Cards>
-            <img src={data.productImage} alt={data.productName} />
+        <Link to={"/details/" + data.productId}>
+         <img src={data.productImage} alt={data.productName} />
+         </Link>
+           
             <h2>{data.productName}</h2>
             <p>{data.productPrice} {currency}</p>
             

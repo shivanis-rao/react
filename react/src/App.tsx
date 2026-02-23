@@ -8,6 +8,7 @@ import { CurrencyProvider } from "./context/CurrencyContext";
 import Currency from "./components/Currency";
 import AppRouter from "./Routes";
 import { BrowserRouter } from "react-router";
+import Menu from "./components/Menu";
 function App() {
   // const [theme,setTheme] = useState("light");
   return (
@@ -17,12 +18,12 @@ function App() {
       <CurrencyProvider>
          <ThemeProvider>
         
-          
+          <Menu/>
           <Currency/>
           <ThemeSwitch/>
-            <AppRouter/>
+          <AppRouter/>
           {/* <Checkout /> */}
-           </ThemeProvider>
+          </ThemeProvider>
         </CurrencyProvider>
      
       </BrowserRouter>
