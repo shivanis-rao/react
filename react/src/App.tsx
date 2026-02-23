@@ -6,19 +6,26 @@ import ThemeSwitch from "./components/ThemeSwitch";
 import { useState } from "react";
 import { CurrencyProvider } from "./context/CurrencyContext";
 import Currency from "./components/Currency";
+import AppRouter from "./Routes";
+import { BrowserRouter } from "react-router";
 function App() {
   // const [theme,setTheme] = useState("light");
   return (
     <div>
       {/* <Demo/> */}
-      <ThemeProvider>
-        <CurrencyProvider>
+      <BrowserRouter>
+      <CurrencyProvider>
+         <ThemeProvider>
+        
+          
           <Currency/>
           <ThemeSwitch/>
-          <Checkout />
-          <ProductList />
+            <AppRouter/>
+          {/* <Checkout /> */}
+           </ThemeProvider>
         </CurrencyProvider>
-      </ThemeProvider>
+     
+      </BrowserRouter>
     </div>
   );
 }
