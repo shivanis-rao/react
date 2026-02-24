@@ -1,14 +1,15 @@
 //this is parent and logic part will be in this 
 
-import { getProducts } from "../services/ProductServices";
-import type { ProductType } from "../types";
+// import { getProducts } from "../services/ProductServices";
+// import type { ProductType } from "../types";
 import Product from "../components/Product";
-import { use, useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useProducts from "../hooks/useProducts";
 import { useNavigate, useSearchParams } from "react-router";
  
 
 function ProductList() {
+ 
   const [search,setSearch] =useState("");
   const [queryParams,setQueryParams] = useSearchParams();
   useEffect(()=>{
@@ -17,6 +18,14 @@ function ProductList() {
     }
   },[queryParams]);
   const plist = useProducts();
+   const filterList = useMemo(
+    ()=>
+      plist.filter(i=>
+        i.productName.toLowerCase().startsWith(search.trim().toLowerCase()),
+      ),
+    [search,plist]
+  );
+
 
   const navigate = useNavigate();
 
@@ -30,9 +39,7 @@ function ProductList() {
         setQueryParams({q:e.target.value});
 
       }}  />
-      {plist.filter(i=>
-      i.productName.toLowerCase().startsWith(search.trim().toLowerCase()),
-    ).map((item) => (
+      {filterList.map((item) => (
         <Product
           key={item.productId}
           pdata={item}

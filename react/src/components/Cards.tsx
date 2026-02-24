@@ -1,6 +1,6 @@
-import { useContext, type PropsWithChildren } from "react";
+import { type PropsWithChildren } from "react";
 import '../index.css';
-import { ThemeContext, useTheme } from "../context/ThemeContext";
+import {  useTheme } from "../context/ThemeContext";
 function Cards({children}:PropsWithChildren){
     const {color} = useTheme();
     return <div className="card" style={{color}}>{children}</div>;

@@ -2,7 +2,7 @@ import { type PropsWithChildren} from "react";
 import { Navigate } from "react-router";
 
 function PrivateRoute({ children }: PropsWithChildren) {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
   if (isLoggedIn) {
     return <>{children}</>;
     } else{
