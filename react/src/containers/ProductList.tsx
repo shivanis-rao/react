@@ -6,12 +6,14 @@ import Product from "../components/Product";
 import { useEffect, useMemo, useState } from "react";
 import useProducts from "../hooks/useProducts";
 import { useNavigate, useSearchParams } from "react-router";
+import { addItem } from "../store/slices/CartSlice";
  
 
 function ProductList() {
  
   const [search,setSearch] =useState("");
   const [queryParams,setQueryParams] = useSearchParams();
+  
   useEffect(()=>{
     if(queryParams.has("q")){
       setSearch(queryParams.get("q") ||"");
@@ -30,6 +32,10 @@ function ProductList() {
   const navigate = useNavigate();
 
 
+  function dispatch(arg0: { payload: any; type: "cart/addItem"; }) {
+    throw new Error("Function not implemented.");
+  }
+
   return (
 
     <div className="grid grid-cols-4 gap-4">
@@ -44,7 +50,7 @@ function ProductList() {
           key={item.productId}
           pdata={item}
           btnClick={() => {
-            console.log("add item")
+            dispatch(addItem(item));
             navigate("/cart");
           }}
           

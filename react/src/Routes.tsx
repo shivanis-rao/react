@@ -7,6 +7,7 @@ import PrivateRoute from "./components/PrivateRoutes";
 import ProductDetail from "./containers/ProductDetails";
 import { lazy,Suspense } from "react";
 import Login from "./containers/Login";
+import Cart from "./components/Cart";
 
 const ProductList = lazy(()=> import("./containers/ProductList"));
 
@@ -28,6 +29,7 @@ function AppRouter(){
                      />
               <Route path ="*" element={<ErrorPage/>   }/>
               <Route path ="/details/:pid" element ={<ProductDetail/>}/>
+              <Route path ="/cart" element = {<Cart/>}/>
         </Routes>
        
     )

@@ -1,7 +1,10 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useCurrency } from "../context/CurrencyContext";
 import type { ProductType } from "../types";
 import Cards from "./Cards";
+import { useSelector } from "react-redux";
+
+import type { RootState } from "../store" 
 type Props ={
     
     pdata?:ProductType;// ? is for making the data optional 
@@ -18,9 +21,10 @@ type Props ={
 
 // }
 function Product({pdata:data,btnClick}:Props){
-    const { currency}= useCurrency();
+    // const { currency}= useCurrency();
+    const currency = useSelector((state:RootState)=> state.currency)
     //const data = props.pdata we did aliasing
-
+   const navigate = useNavigate();
     // return early if no data to avoid "possibly undefined" errors
     if (!data) return null;
 
