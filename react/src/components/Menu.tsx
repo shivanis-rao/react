@@ -17,6 +17,7 @@ function Menu(){
                 <li>
                 <Link to="/details">Details</Link>
             </li>
+            {/* <li><Link to="/login">Login</Link></li> */}
             
         </ul>
     )

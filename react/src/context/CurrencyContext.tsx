@@ -1,8 +1,8 @@
-import { createContext, type PropsWithChildren, useState, useContext, use, useEffect } from "react";
+import { createContext, type PropsWithChildren, useState, useContext,  useEffect } from "react";
 
 export const CurrencyContext = createContext({
     currency:"USD",
-    setCurrency:(c:string)=>{}
+    setCurrency:(_c:string)=>{}
 });
 export function CurrencyProvider({children}:PropsWithChildren){
     const [currency,setCurrency] = useState("USD");
